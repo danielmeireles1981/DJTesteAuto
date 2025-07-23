@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Testes dos Autobots</title>
+    <style>
+      body {
+        background: #f8f9fa;
+        font-family: monospace;
+        color: #212529;
+      }
+      .log {
+        white-space: pre-wrap;
+        background: #222;
+        color: #0ff521;
+        padding: 1em;
+        border-radius: 8px;
+      }
+      .btn {
+        padding: 10px 25px;
+        background: #0096ff;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        font-size: 1.1em;
+        cursor: pointer;
+      }
+      h1 {
+        color: #0096ff;
+      }
+    </style>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'autobots.css' %}" />
+    <!-- Se quiser, use o Google Fonts Orbitron -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto+Mono&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="header-autobots">
+      <img src="{% static 'autobots_logo.png' %}" alt="Logo Autobots" />
+      <h1>Base dos Autobots</h1>
+      <ul class="navbar-links">
+        <li><a href="{% url 'cadastrar_autobot' %}">Cadastrar Autobot</a></li>
+        <li><a href="{% url 'listar_autobots' %}">Listar Autobots</a></li>
+        <li><a href="{% url 'rodar_testes_autobots' %}">Rodar Testes</a></li>
+      </ul>
+    </div>
+
+    <h1>🦾 Painel de Testes dos Autobots</h1>
+    <form method="post">
+      {% csrf_token %}
+      <button class="btn" type="submit">Rodar Missão de Testes</button>
+    </form>
+    {% if log %}
+      <h2>Log da Missão:</h2>
+      <pre class="log">{{ log }}</pre>
+    {% endif %}
+  </body>
+</html>

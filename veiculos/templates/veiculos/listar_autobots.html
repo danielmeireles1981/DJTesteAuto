@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'autobots.css' %}" />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@400;500&family=Roboto+Mono&display=swap" rel="stylesheet">
+    <title>Listagem dos Autobots</title>
+  </head>
+  <body>
+    <header class="header-autobots">
+      <img src="{% static 'autobots_logo.png' %}" alt="Logo Autobots" />
+      <h1>Base dos Autobots</h1>
+      <ul class="navbar-links">
+        <li><a href="{% url 'cadastrar_autobot' %}">Cadastrar Autobot</a></li>
+        <li><a href="{% url 'listar_autobots' %}">Listar Autobots</a></li>
+        <li><a href="{% url 'rodar_testes_autobots' %}">Rodar Testes</a></li>
+      </ul>
+    </header>
+
+    <main class="container">
+      <h1>Autobots na Base</h1>
+      
+      <div class="autobots-grid">
+        {% for autobot in autobots %}
+        <div class="autobot-card">
+          <div class="autobot-header">
+            <h2>{{ autobot.nome }}</h2>
+            <span class="autobot-type">{{ autobot.tipo }}</span>
+          </div>
+          <div class="autobot-stats">
+            <div class="stat">
+              <span class="stat-label">Poder</span>
+              <span class="stat-value">{{ autobot.poder }}</span>
+            </div>
+            <div class="power-bar" style="--power: {{ autobot.pador }}%;"></div>
+          </div>
+          <div class="autobot-quote">
+            <blockquote>"{{ autobot.frase_batalha }}"</blockquote>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </main>
+  </body>
+</html>

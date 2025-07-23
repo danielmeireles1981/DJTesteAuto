@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Autobot</title>
+    <link rel="stylesheet" href="{% static 'autobots.css' %}" />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@400;500&family=Roboto+Mono&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <header class="header-autobots">
+      <img src="{% static 'autobots_logo.png' %}" alt="Logo Autobots" />
+      <h1>Base dos Autobots</h1>
+      <ul class="navbar-links">
+        <li><a href="{% url 'cadastrar_autobot' %}">Cadastrar Autobot</a></li>
+        <li><a href="{% url 'listar_autobots' %}">Listar Autobots</a></li>
+        <li><a href="{% url 'rodar_testes_autobots' %}">Rodar Testes</a></li>
+      </ul>
+    </header>
+
+    <main>
+      <h1>Cadastro de Novo Autobot</h1>
+      <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Salvar Autobot</button>
+      </form>
+    </main>
+  </body>
+</html>
